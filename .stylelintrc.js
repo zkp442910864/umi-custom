@@ -1,4 +1,7 @@
 module.exports = {
-    // Umi 项目
-    extends: require.resolve('umi/stylelint'),
+    extends: [
+        // Umi 项目
+        require.resolve('umi/stylelint'),
+        '@zzzz-/stylelint-config-test',
+    ],
 }

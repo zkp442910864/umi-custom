@@ -1,3 +1,4 @@
+/* eslint-disable no-redeclare */
 import {getIntl as rawGetIntl, getLocale, injectIntl} from 'umi';
 import {ReactNode} from 'react';
 
@@ -9,8 +10,8 @@ const getIntl = (() => {
         }
 
         return intl;
-    }
-})()
+    };
+})();
 
 /**
  * 获取语言资源，支持替换成dom
@@ -32,7 +33,7 @@ export function formatMessage (key: string, defaultMessage?: string, options?: R
     }
 
     const str = rawFormatMessage({id: key, defaultMessage: defaultMessage});
-    let arr: Array<string | number | ReactNode> = [];
+    const arr: Array<string | number | ReactNode> = [];
     keys.forEach((k) => {
         const strArr = str.split(`{${k}}`);
         arr.push(strArr[0]);
@@ -44,6 +45,7 @@ export function formatMessage (key: string, defaultMessage?: string, options?: R
         <>
             {
                 arr.map((dom, index) => {
+                    // eslint-disable-next-line react/no-array-index-key
                     return <span key={index}>{dom}</span>;
                 })
             }
@@ -74,7 +76,7 @@ export default {
     formatMessage,
     getLanguage,
     getInputLanguage,
-}
+};
 
 
 // interface ICustomFormatMessage {

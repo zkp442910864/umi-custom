@@ -23,6 +23,8 @@
         "@types/react-dom": "^18.0.0",
         "@umijs/lint": "^4.0.9",
         "@umijs/plugins": "^4.0.9",
+        "@zzzz-/eslint-config-test": "^1.0.20",
+        "@zzzz-/stylelint-config-test": "^1.0.9",
         "eslint": "^8.21.0",
         "stylelint": "^14.9.1",
         "typescript": "^4.1.2",

@@ -3,25 +3,6 @@ import {InitialStateType} from '@@/plugin-initialState/@@initialState';
 
 import rawRouters from '../config/routes';
 
-/** https://umijs.org/zh-CN/plugins/plugin-access */
-export default function access (initialState: InitialStateType) {
-    // console.log(initialState, rawRouters);
-    const {
-        // validMenuDataMap = {},
-        allMenuDataMap = {},
-    } = initialState || {};
-
-    // console.log(getRawRouterAccess(rawRouters));
-    // console.log(getAllowPage(getRawRouterAccess(rawRouters), allMenuDataMap));
-
-    return {
-        /** 按钮权限判断 */
-        operaCodeCheck: operationCode(allMenuDataMap),
-        /** 页面权限 */
-        ...getAllowPage(getRawRouterAccess(rawRouters), allMenuDataMap)
-    };
-}
-
 /**
  * 获取所有路由中的 access 值
  *
@@ -49,7 +30,7 @@ function getRawRouterAccess (rawData: typeof rawRouters) {
                 handler(item.routes);
             }
         });
-    }
+    };
 
     handler(rawData);
 
@@ -77,6 +58,25 @@ function operationCode (allMenuDataMap: TObj) {
 
         // 包含 A1 的话，说明是超级管理员
         return menuItem.operateCodes.includes(code) || menuItem.operateCodes.includes('A1');
-    }
-};
+    };
+}
+
+/** https://umijs.org/zh-CN/plugins/plugin-access */
+export default function access (initialState: InitialStateType) {
+    // console.log(initialState, rawRouters);
+    const {
+        // validMenuDataMap = {},
+        allMenuDataMap = {},
+    } = initialState || {};
+
+    // console.log(getRawRouterAccess(rawRouters));
+    // console.log(getAllowPage(getRawRouterAccess(rawRouters), allMenuDataMap));
+
+    return {
+        /** 按钮权限判断 */
+        operaCodeCheck: operationCode(allMenuDataMap),
+        /** 页面权限 */
+        ...getAllowPage(getRawRouterAccess(rawRouters), allMenuDataMap),
+    };
+}
 

@@ -41,7 +41,7 @@ export const handlerMenuData = async (data: TObj[]) => {
             allAddressMap[item.path] = item;
             allAddressMap[item.path.toLocaleLowerCase()] = item;
         });
-    }
+    };
 
     each(data);
 
@@ -49,7 +49,7 @@ export const handlerMenuData = async (data: TObj[]) => {
         menuData: data,
         validMenuDataMap: validAddressMap,
         allMenuDataMap: allAddressMap,
-    }
+    };
 
 };
 

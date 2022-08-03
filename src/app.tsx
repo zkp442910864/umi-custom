@@ -37,7 +37,7 @@ export async function getInitialState () {
         allMenuDataMap,
         /** 字典数据(一次性拿下所有数据) */
         dictionaries: {},
-    }
+    };
 }
 
 // ProLayout 支持的api https://procomponents.ant.design/components/layout
@@ -69,7 +69,7 @@ export const layout: RunTimeLayoutConfig = (initData) => {
             console.log(initialState);
         },
         style: {
-            minHeight: '100vh'
+            minHeight: '100vh',
         },
 
         /* // 菜单底部功能

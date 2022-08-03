@@ -59,7 +59,7 @@ export default defineConfig({
     },
     // 路由方式
     history: {
-        type: 'hash'
+        type: 'hash',
     },
     routes,
     // 设置按需引入的 polyfill。默认全量引入。

@@ -28,12 +28,12 @@ const AvatarDropdown = () => {
         }
     };
 
-    const menuHeaderDropdown = (<Menu selectedKeys={[]} onClick={onMenuClick} items={menuItems} />);
+    const menuHeaderDropdown = (<Menu items={menuItems} selectedKeys={[]} onClick={onMenuClick} />);
 
     return (
         <Dropdown overlay={menuHeaderDropdown}>
             <div className={styles['dropdown-item']}>
-                <Avatar size="small" src={userData.avatar || './favicon.png'} alt="avatar" />
+                <Avatar alt="avatar" size="small" src={userData.avatar || './favicon.png'} />
                 <div className={styles['dropdown-item-name']}>{userData.name || '名称'}</div>
             </div>
         </Dropdown>

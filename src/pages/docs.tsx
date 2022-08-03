@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import {useEffect} from 'react';
 import {useAccess, useStore, useSelector, useDispatch, useModel} from 'umi';
 
 import {formatMessage} from '@/utils/intlUtils';
@@ -6,7 +6,7 @@ import {formatMessage} from '@/utils/intlUtils';
 const DocsPage = () => {
 
     // const store = useStore();
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const dvaCommon = useSelector((store: any) => store.dvaCommon);
 
     const [data, setData] = useModel('common');
@@ -18,7 +18,7 @@ const DocsPage = () => {
             type: 'dvaCommon/getXxxData',
             payload: {a: 1, b: 2},
         });
-        setData({sdfsdf: 3, rwer: 12})
+        setData({sdfsdf: 3, rwer: 12});
     }, []);
 
     return (
