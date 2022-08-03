@@ -23,6 +23,7 @@ export default defineConfig({
         '@umijs/plugins/dist/model',
         '@umijs/plugins/dist/layout',
         '@umijs/plugins/dist/antd',
+        '@umijs/plugins/dist/unocss',
         // path.resolve(process.cwd(), './node_modules/@umijs/plugin-dva/src/index')
         // path.resolve(process.cwd(), './config/plugins/plugin-html')
     ],
@@ -42,6 +43,15 @@ export default defineConfig({
         style: 'less',
         import: true,
         configProvider: {},
+    },
+    unocss: {
+        // 添加其他包含 unocss 的 classname 的文件目录
+        watch: [
+            'src/**/*.tsx',
+            // 'src/**/*.jsx',
+            // 'components/**/*.tsx',
+            // 'components/**/*.jsx',
+        ],
     },
     // 全局属性，只支持字符串
     define: {

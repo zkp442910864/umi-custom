@@ -37,10 +37,10 @@ export default function HomePage () {
     return (
         <div>
             <h2>Yay! Welcome to umi!</h2>
-            <p>
+            <p className="m-100 p-14">
                 <img src={yayJpg} width="388" />
             </p>
-            <p>
+            <p className="!p-x-10 font-28 color-red">
                 To get started, edit <code>pages/index.tsx</code> and save to reload.
             </p>
             <p>{JSON.stringify(data)}</p>
