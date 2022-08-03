@@ -25,7 +25,7 @@ const arr: IRouter[] = [
     },
     {
         path: '*',
-        component: '/StatusPage'
+        component: '/StatusPage',
     },
 ];
 
@@ -48,7 +48,7 @@ const accessToLocaleLowerCase = (data: IRouter[]) => {
     });
 
     return data;
-}
+};
 
 export default accessToLocaleLowerCase(arr);
 

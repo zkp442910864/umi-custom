@@ -9,6 +9,6 @@ const fn = (memo: Config, args: any) => {
 
     // memo.resolve.alias.set('foo', '/tmp/to/foo');
 
-}
+};
 
 export default fn;

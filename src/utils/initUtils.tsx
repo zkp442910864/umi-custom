@@ -1,6 +1,4 @@
-/**
- * 初始化数据的函数
- */
+/** 初始化数据的函数 */
 import react from 'react';
 
 import {formatMessage, getLanguage} from './intlUtils';

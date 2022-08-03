@@ -77,9 +77,3 @@ export default {
     getLanguage,
     getInputLanguage,
 };
-
-
-// interface ICustomFormatMessage {
-//     formatMessage (key: string, defaultMessage?: string, options?: Record<string, string | number | ReactNode>): string;
-//     formatMessage (key: string, defaultMessage: string, options: Record<string, string | number | ReactNode>, inlineDom: boolean): JSX.Element;
-// }
