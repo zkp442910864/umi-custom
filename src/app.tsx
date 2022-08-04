@@ -1,5 +1,4 @@
-import {RunTimeLayoutConfig, createSearchParams, history, setLocale, getLocale} from 'umi';
-import {SmileOutlined} from '@ant-design/icons';
+import {RunTimeLayoutConfig, createSearchParams, history} from 'umi';
 
 import Footer from '@/layouts/Footer';
 import RightContent from '@/layouts/RightContent';
@@ -10,25 +9,36 @@ console.log('app');
 
 /** https://umijs.org/zh-CN/plugins/plugin-initial-state */
 export async function getInitialState () {
-    let [menuData, validMenuDataMap, allMenuDataMap] = [[] as TObj[], {}, {}];
+    let menuData: TObj[] = [];
+    let dictionaries: ReturnType<typeof handlerDictionaries>['mapData'] = {};
+    let getDictionData: ReturnType<typeof handlerDictionaries>['getDictionData'] = () => [];
+    let [validMenuDataMap, allMenuDataMap, userData] = [{}, {}, {}] as TObj[];
 
     try {
-        // setLocale(getLocale(), false);
 
         // TODO: 前置请求，注意报错处理
+        const [res1, res2, res3] = await Promise.all<TObj[]>([
+            fetch('/api-text/getMenuData'),
+            fetch('/api-text/getUserData'),
+            fetch('/api-text/getDictionaries'),
+        ]);
 
-        ({menuData, validMenuDataMap, allMenuDataMap} = await handlerMenuData([
-            {path: '/', name: '首页-服务端返回', locale: 'navBar.lang', icon: ''},
-            {path: '/test', name: '测试', icon: 'SmileOutlined'},
-            // {path: '/docs123', name: 'docs123', icon: 'SmileOutlined'},
-        ]));
+        const data1 = await res1.json();
+        const data2 = await res2.json();
+        const data3 = await res3.json();
+
+        ({menuData, validMenuDataMap, allMenuDataMap} = await handlerMenuData(data1.data));
+        const {mapData, getDictionData: getDictionDataFn} = handlerDictionaries(data3.data);
+        dictionaries = mapData;
+        getDictionData = getDictionDataFn;
+        userData = data2.data;
     } catch (error) {
         console.error(error);
     }
 
     return {
         /** 用户数据 */
-        userData: {} as TObj,
+        userData,
         /** 菜单数据 */
         menuData,
         /** 有效菜单映射 */
@@ -36,7 +46,9 @@ export async function getInitialState () {
         /** 所有菜单映射，包括 children */
         allMenuDataMap,
         /** 字典数据(一次性拿下所有数据) */
-        dictionaries: {},
+        dictionaries,
+        /** 获取字典数据的函数 */
+        getDictionData,
     };
 }
 
@@ -66,7 +78,8 @@ export const layout: RunTimeLayoutConfig = (initData) => {
             return initialState?.menuData || [];
         },
         onPageChange: (location) => {
-            console.log(initialState);
+            // console.log(initialState);
+            console.log('进入');
         },
         style: {
             minHeight: '100vh',

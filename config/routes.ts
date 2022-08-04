@@ -12,16 +12,44 @@
 const arr: IRouter[] = [
     {
         path: '/',
-        component: '/index',
+        component: '/Home',
         name: '首页',
         locale: 'menu.dashboard',
-        icon: 'BarsOutlined',
+        access: '/',
     },
     {
-        path: '/docs123',
-        // layout: false,
-        component: '/docs',
-        access: ['/', '/docs123'],
+        path: '/parent0',
+        routes: [
+            {
+                path: '/parent0/child1',
+                component: '/testPage/Test1',
+                access: '/parent0',
+            },
+        ],
+    },
+    {
+        path: '/parent1',
+        routes: [
+            {
+                path: '/parent1/child1',
+                component: '/testPage/Test1',
+            },
+            {
+                path: '/parent1/child2',
+                routes: [
+                    {
+                        path: '/parent1/child2/sub1',
+                        component: '/testPage/Test1',
+                        access: '/parent1/child2/sub1',
+                    },
+                ],
+            },
+        ],
+    },
+    {
+        path: '/parent2',
+        component: '/testPage/Test1',
+        access: ['/parent2', '/'],
     },
     {
         path: '*',

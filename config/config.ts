@@ -110,14 +110,19 @@ export default defineConfig({
     // 产物增加hash
     hash: true,
     // mock 目录
-    mock: false as any,
-    // mock: {
-    //     include: ['../mock/**/*'],
-    // },
+    // mock: false as any,
+    mock: {
+        include: [
+            // '../mock/**/*.ts',
+            'mock/**/*.ts',
+            // '/mock/**/*.ts',
+        ],
+    },
     // 配置webpack
     chainWebpack: chainWebpack as () => any,
     // 代理
     proxy,
     // 这个开启后会影响加密软件？
     // clientLoader: {},
+    // mfsu: false,
 });

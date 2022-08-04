@@ -12,7 +12,7 @@ const AvatarDropdown = () => {
         type: 'modify',
     });
 
-    const userData = initialState?.userData || {};
+    const userData = initialState?.userData || {} as TObj;
 
     const menuItems: ItemType[] = [
         {
@@ -34,7 +34,7 @@ const AvatarDropdown = () => {
         <Dropdown overlay={menuHeaderDropdown}>
             <div className={styles['dropdown-item']}>
                 <Avatar alt="avatar" size="small" src={userData.avatar || './favicon.png'} />
-                <div className={styles['dropdown-item-name']}>{userData.name || '名称'}</div>
+                <div className={styles['dropdown-item-name']}>{userData.UserName}</div>
             </div>
         </Dropdown>
     );

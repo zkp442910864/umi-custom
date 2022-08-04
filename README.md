@@ -1,4 +1,11 @@
 
+# 任务列表
+
+<!-- - [x] 支持 #标签 ，[链接]()，**样式** -->
+- [ ] 增加登录页面
+- [ ] `mock`不实时更新
+- [ ] `unocss`增加`flex`规则
+
 # 使用
 
 - 注意看ts定义文件
@@ -16,6 +23,15 @@
 ## 数据流
 
 - 使用`useModel`作为全局数据流，类组件还是需要使用dva
+- 字典数据使用
+
+    ```tsx
+        const {initialState} = useModel('@@initialState');
+        initialState!.getDictionData('CustomType1');
+        initialState!.getDictionData('CustomType1', {toNum: true});
+        initialState!.getDictionData('CustomType2', {assignValues: [0, 1, 2]});
+        initialState!.getDictionData('CustomType2', {findValue: 4});
+    ```
 
 ## 入口
 
@@ -31,6 +47,12 @@
 - 路由配置关键字段`access`内容必须和`path`一致(不区分大小写)，才能起到菜单权限判断效果
 - 通过`useAccess`可以获取权限数据以及判断函数，文件位置`src\access.ts`
 - 如果需要对不在菜单中的页面做权限判断，可以把`access`设置为依附页面的路径
+- 按钮权限判断，按页面维度来处理
+
+    ```tsx
+        const {operaCodeCheck} = useAccess();
+        operaCodeCheck('O2');
+    ```
 
 ## 内置样式
 

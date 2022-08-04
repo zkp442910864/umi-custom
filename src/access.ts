@@ -48,17 +48,18 @@ function getAllowPage (judgeMap: ReturnType<typeof getRawRouterAccess>, allMenuD
 
 /** 按钮权限判断，以菜单维度处理 */
 function operationCode (allMenuDataMap: TObj) {
-    return (code: string) => {
+    const fn: (code: string) => boolean = (code) => {
 
-        // const menuData = getGlobalMenuInfo();
         const pageUrl = history.location.pathname;
         const menuItem = allMenuDataMap[pageUrl.toLocaleLowerCase()];
 
-        if (!menuItem) return false;
+        if (!menuItem || !menuItem.operateCodes || !menuItem.operateCodes.length) return false;
 
         // 包含 A1 的话，说明是超级管理员
         return menuItem.operateCodes.includes(code) || menuItem.operateCodes.includes('A1');
     };
+
+    return fn;
 }
 
 /** https://umijs.org/zh-CN/plugins/plugin-access */
@@ -68,9 +69,6 @@ export default function access (initialState: InitialStateType) {
         // validMenuDataMap = {},
         allMenuDataMap = {},
     } = initialState || {};
-
-    // console.log(getRawRouterAccess(rawRouters));
-    // console.log(getAllowPage(getRawRouterAccess(rawRouters), allMenuDataMap));
 
     return {
         /** 按钮权限判断 */
