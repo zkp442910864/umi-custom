@@ -77,28 +77,54 @@ export default defineConfig({
             },
         ],
 
-        // px值
+        // px值宽高
         // width100 width200
         // height100 height200
-        // 百分比
+        // 百分比宽高
         // width-100 width-200
         // height-100 height-200
-        // font-12 字体大小
+        // 字体大小 font-12 ...
         [
             /([a-z|A-Z]+)(-)?(\d+)/,
             ([, v1, v2, v3]) => {
 
-                if (['height', 'width', 'font'].includes(v1)) {
-                    const unit = (v2 === '-' && v1 !== 'font') ? '%' : 'px';
-                    const val = v3;
+                const val = v3;
 
-                    const map: Record<string, string | undefined> = {
-                        font: 'font-size',
-                    };
+                if (['height', 'width'].includes(v1)) {
+                    const unit = v2 === '-' ? '%' : 'px';
 
                     return {
-                        [map[v1] || v1]: `${val}${unit}`,
+                        [v1]: `${val}${unit}`,
                     };
+                } else if (v1 === 'font') {
+                    // 字体大小 font-12 ...
+                    return {
+                        'font-size': `${val}px`,
+                    };
+                }
+
+                return undefined;
+            },
+        ],
+        // 文字对齐 text-center text-right ...
+        [
+            /([a-z|A-Z]+)(-)?([a-z|A-Z]+)/,
+            ([, v1, v2, v3]) => {
+
+                const val = v3;
+
+                if (v1 === 'text') {
+                    // 文字对齐 text-center text-right ...
+                    return {
+                        'text-align': `${val}`,
+                    };
+                } else if (v1 === 'flex') {
+                    // const map = {
+                    //     box: {display: 'flex'},
+                    //     center: {'align-items': 'center'},
+                    //     wrap: {'flex-wrap': 'wrap'},
+                    //     nowrap: {'flex-wrap': 'nowrap'},
+                    // };
                 }
 
                 return undefined;
@@ -124,5 +150,19 @@ export default defineConfig({
                 };
             },
         ],
+
+        // 禁止选择
+        ['disabled-select', {'user-select': 'none'}],
+        // 禁止事件
+        ['disabled-event', {'pointer-events': 'none'}],
+        // 鼠标手势
+        ['pointer', {cursor: 'pointer'}],
+        // 定位类型
+        ['abs', {position: 'absolute'}],
+        ['rel', {position: 'relative'}],
+        ['fixed', {position: 'fixed'}],
+        ['static', {position: 'static'}],
+        // 隐藏
+        ['hidden', {display: 'none'}],
     ],
 });

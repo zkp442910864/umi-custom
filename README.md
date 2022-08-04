@@ -11,6 +11,7 @@
     - 2.重新编译一遍，就有提示了
     - 3.每次操作依赖时候，都会导致代码回滚
     - typescript 不识别带后缀文件...
+- 修改`unocss.config.ts`内容后，必须手动重启服务才有效果
 
 ## 数据流
 
@@ -30,3 +31,42 @@
 - 路由配置关键字段`access`内容必须和`path`一致(不区分大小写)，才能起到菜单权限判断效果
 - 通过`useAccess`可以获取权限数据以及判断函数，文件位置`src\access.ts`
 - 如果需要对不在菜单中的页面做权限判断，可以把`access`设置为依附页面的路径
+
+## 内置样式
+
+- 除了有说明，其它都是 px为单位
+
+```js
+    // 边距
+    // m-l-1 m-r-5 m-t-5 m-b-5 m-y-10 m-x-10 m-tb-10 m-lr-10 m-10 ...
+    // p-l-1 p-r-5 p-t-5 p-b-5 p-y-10 p-x-10 p-tb-10 p-lr-10 p-10 ...
+
+    // px值宽高
+    // width100 width200 ...
+    // height100 height200 ...
+
+    // 百分比宽高
+    // width-100 width-200 ...
+    // height-100 height-200 ...
+
+    // 字体大小 font-12 ...
+
+    // 文字对齐 text-center text-right ...
+
+    // 文字颜色 color-main color-red color-error color-gray
+
+    // 禁止选择 disabled-select
+
+    // 禁止事件 disabled-event
+
+    // 鼠标手势 pointer
+
+    // 定位相关position: abs rel fixed static
+
+    // 隐藏 hidden
+```
+
+### 其它插件-unocss
+
+- [git地址](https://github.com/unocss/unocss)
+- [资料1](https://youlinkin.com/posts/19-rethinking-atomized-css)

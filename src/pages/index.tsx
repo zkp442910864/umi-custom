@@ -36,14 +36,14 @@ export default function HomePage () {
 
     return (
         <div>
-            <h2>Yay! Welcome to umi!</h2>
+            <h2 className="hidden">Yay! Welcome to umi!</h2>
             <p className="m-100 p-14">
                 <img src={yayJpg} width="388" />
             </p>
-            <p className="!p-x-10 font-28 color-red">
+            <p className="!p-x-10 font-28 color-red width100 height100">
                 To get started, edit <code>pages/index.tsx</code> and save to reload.
             </p>
-            <p>{JSON.stringify(data)}</p>
+            <p className="disabled-select text-center color-main pointer width-50">{JSON.stringify(data)}</p>
             <Button>123</Button>
         </div>
     );
