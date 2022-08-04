@@ -5,6 +5,7 @@
 - [ ] 增加登录页面
 - [ ] `mock`不实时更新
 - [ ] `unocss`增加`flex`规则
+- [ ] 强校验eslint, stylelint
 
 # 使用
 
