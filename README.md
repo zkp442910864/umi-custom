@@ -5,6 +5,7 @@
 - [ ] 增加登录页面
 - [ ] `mock`不实时更新
 - [x] 多级菜单展示有问题(单独安装`@ant-design/pro-layout`包)
+- [ ] 强校验eslint, stylelint
 
 # 使用
 
