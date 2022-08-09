@@ -114,7 +114,7 @@ export default defineConfig({
     mock: {
         include: [
             // '../mock/**/*.ts',
-            'mock/**/*.ts',
+            // 'mock/**/*.ts',
             // '/mock/**/*.ts',
         ],
     },

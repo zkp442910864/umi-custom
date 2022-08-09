@@ -2,10 +2,12 @@
 # 任务列表
 
 <!-- - [x] 支持 #标签 ，[链接]()，**样式** -->
-- [ ] 增加登录页面
-- [ ] `mock`不实时更新
-- [x] 多级菜单展示有问题(单独安装`@ant-design/pro-layout`包)
-- [ ] 强校验eslint, stylelint
+- [] 增加登录页面
+- [] `mock`不实时更新
+- [] 多级菜单展示有问题
+- [x] 强校验`eslint`, `stylelint`
+- [] 用`externals`全局变量
+- [] 初始化过渡动画
 
 # 使用
 
@@ -123,3 +125,7 @@
 
 - [git地址](https://github.com/unocss/unocss)
 - [资料1](https://youlinkin.com/posts/19-rethinking-atomized-css)
+
+### 资料
+
+- [eslint 命令说明](https://www.jianshu.com/p/4133063d1785)

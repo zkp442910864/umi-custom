@@ -4,14 +4,16 @@
   "private": true,
   "scripts": {
     "dev": "umi dev",
-    "build": "umi build",
+    "build": "npm run eslint && npm run stylelint && umi build",
     "postinstall": "umi setup",
     "setup": "umi setup",
-    "start": "npm run dev"
+    "start": "npm run dev",
+    "eslint": "umi lint --eslint-only --quiet",
+    "eslint:fix": "umi lint --eslint-only --fix",
+    "stylelint": "umi lint --stylelint-only --quiet"
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
-    "@ant-design/pro-layout": "^6.38.17",
     "antd": "^4.22.3",
     "classnames": "^2.3.1",
     "moment": "^2.29.4",

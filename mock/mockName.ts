@@ -5,7 +5,7 @@ export default {
             message: '',
             data: [
                 {
-                    name: '首页',
+                    name: '首页11',
                     icon: null,
                     path: '/',
                     operateCodes: [
