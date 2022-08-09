@@ -1,7 +1,7 @@
 /** 初始化数据的函数 */
 import react from 'react';
 
-import {formatMessage, getLanguage} from './intlUtils';
+import {formatMessage, getLanguage} from '../other/intl';
 
 /** 处理菜单 */
 export const handlerMenuData = async (data: TObj[]) => {
@@ -127,7 +127,6 @@ export const handlerDictionaries = (data: TObj[], fieldData: IFieldData = {}) =>
         getDictionData,
     };
 };
-
 
 interface IGetDictionDataAssist {
     /**

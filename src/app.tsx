@@ -3,7 +3,8 @@ import {RunTimeLayoutConfig, createSearchParams, history} from 'umi';
 import Footer from '@/layouts/Footer';
 import RightContent from '@/layouts/RightContent';
 import StatusPage from '@/pages/StatusPage';
-import {handlerMenuData, handlerDictionaries} from '@/utils/initUtils';
+import {handlerMenuData, handlerDictionaries} from '@/utils/base/init';
+import {getMenuDataApi, getUserDataApi, getDictionariesApi} from '@/services/commonApi';
 
 console.log('app');
 
@@ -18,9 +19,9 @@ export async function getInitialState () {
 
         // TODO: 前置请求，注意报错处理
         const [res1, res2, res3] = await Promise.all<TObj[]>([
-            fetch('/api-text/getMenuData'),
-            fetch('/api-text/getUserData'),
-            fetch('/api-text/getDictionaries'),
+            getMenuDataApi(),
+            getUserDataApi(),
+            getDictionariesApi(),
         ]);
 
         const data1 = await res1.json();

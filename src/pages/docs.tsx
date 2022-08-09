@@ -1,7 +1,7 @@
 import {useEffect} from 'react';
 import {useAccess, useStore, useSelector, useDispatch, useModel} from 'umi';
 
-import {formatMessage} from '@/utils/intlUtils';
+import {formatMessage} from '@/utils';
 
 const DocsPage = () => {
 

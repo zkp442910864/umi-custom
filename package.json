@@ -7,12 +7,11 @@
     "build": "umi build",
     "postinstall": "umi setup",
     "setup": "umi setup",
-    "start": "npm run dev",
-    "g-mock": "umi g mock",
-    "g-tailwindcss": "umi g tailwindcss"
+    "start": "npm run dev"
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
+    "@ant-design/pro-layout": "^6.38.17",
     "antd": "^4.22.3",
     "classnames": "^2.3.1",
     "moment": "^2.29.4",

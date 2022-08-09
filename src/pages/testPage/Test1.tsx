@@ -1,7 +1,7 @@
 import {useEffect} from 'react';
 import {useAccess, history, useSelector, useDispatch, useModel, useLocation} from 'umi';
 
-import {formatMessage} from '@/utils/intlUtils';
+import {formatMessage} from '@/utils';
 
 const Test1 = () => {
 
@@ -26,10 +26,12 @@ const Test1 = () => {
 
     return (
         <div>
-            <p>This is umi docs.</p>
-            <p>{JSON.stringify(dvaCommon.xxxData)}</p>
-            <p>{JSON.stringify(data)}</p>
-            <p>{local.pathname}</p>
+            <div className="flex f-justify-between f-items-center color-gray">
+                <p className="m-b-0">This is umi docs.</p>
+                <p>{JSON.stringify(dvaCommon.xxxData)}</p>
+                <p>{JSON.stringify(data)}</p>
+                <p className="f-1 m-b-0">{local.pathname}</p>
+            </div>
             {formatMessage('navBar.lang', '')}
         </div>
     );

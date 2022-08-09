@@ -4,7 +4,7 @@
 <!-- - [x] 支持 #标签 ，[链接]()，**样式** -->
 - [ ] 增加登录页面
 - [ ] `mock`不实时更新
-- [ ] `unocss`增加`flex`规则
+- [x] 多级菜单展示有问题(单独安装`@ant-design/pro-layout`包)
 
 # 使用
 
@@ -59,6 +59,7 @@
 - 除了有说明，其它都是 px为单位
 
 ```js
+    // 可以使用 unocss vscode插件
     // 边距
     // m-l-1 m-r-5 m-t-5 m-b-5 m-y-10 m-x-10 m-tb-10 m-lr-10 m-10 ...
     // p-l-1 p-r-5 p-t-5 p-b-5 p-y-10 p-x-10 p-tb-10 p-lr-10 p-10 ...
@@ -73,7 +74,7 @@
 
     // 字体大小 font-12 ...
 
-    // 文字对齐 text-center text-right ...
+    // 文字对齐 text-center text-right text-left
 
     // 文字颜色 color-main color-red color-error color-gray
 
@@ -86,6 +87,35 @@
     // 定位相关position: abs rel fixed static
 
     // 隐藏 hidden
+
+    // 弹性盒子
+    ['flex', {display: 'flex'}],
+    ['f-1', {flex: 1}],
+    ['f-initial', {flex: 'initial'}],
+    ['f-none', {flex: 'none'}],
+    ['f-wrap', {'flex-wrap': 'wrap'}],
+    ['f-nowrap', {'flex-wrap': 'nowrap'}],
+    ['f-reverse', {'flex-wrap': 'wrap-reverse'}],
+    ['f-row', {'flex-direction': 'row'}],
+    ['f-col', {'flex-direction': 'column'}],
+    // flex的对齐属性
+    ['f-justify-center', {'justify-content': 'center'}],
+    ['f-justify-end', {'justify-content': 'flex-end'}],
+    ['f-justify-start', {'justify-content': 'flex-start'}],
+    ['f-justify-around', {'justify-content': 'space-around'}],
+    ['f-justify-between', {'justify-content': 'space-between'}],
+    ['f-justify-evenly', {'justify-content': 'space-evenly'}],
+
+    ['f-items-center', {'align-items': 'center'}],
+    ['f-items-end', {'align-items': 'flex-end'}],
+    ['f-items-start', {'align-items': 'flex-start'}],
+
+    ['f-content-center', {'align-content': 'center'}],
+    ['f-content-end', {'align-content': 'flex-end'}],
+    ['f-content-start', {'align-content': 'flex-start'}],
+    ['f-content-around', {'align-content': 'space-around'}],
+    ['f-content-between', {'align-content': 'space-between'}],
+    ['f-content-evenly', {'align-content': 'space-evenly'}],
 ```
 
 ### 其它插件-unocss

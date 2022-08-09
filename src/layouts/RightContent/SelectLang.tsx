@@ -43,7 +43,7 @@ const SelectLang = () => {
     return (
         <Dropdown overlay={menuHeaderDropdown}>
             <div className={styles['dropdown-item']}>
-                <i className={classnames('anticon', styles['dropdown-item-lang-icon'])}>
+                <i className={classnames(styles['dropdown-item-lang-icon'])}>
                     <svg
                         aria-hidden="true"
                         fill="currentColor"
