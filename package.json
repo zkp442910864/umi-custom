@@ -19,13 +19,13 @@
     "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "umi": "^4.0.9"
+    "umi": "^4.0.11"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "@umijs/lint": "^4.0.9",
-    "@umijs/plugins": "^4.0.9",
+    "@umijs/lint": "^4.0.11",
+    "@umijs/plugins": "^4.0.11",
     "@unocss/cli": "^0.45.1",
     "@zzzz-/eslint-config-test": "^1.0.20",
     "@zzzz-/stylelint-config-test": "^1.0.9",
