@@ -8,6 +8,7 @@
 - [x] 强校验`eslint`, `stylelint`
 - [] 用`externals`全局变量
 - [] 初始化过渡动画
+- [x] 文件更新,缓存导致加载错误的处理
 
 # 使用
 
@@ -50,11 +51,23 @@
 - 路由配置关键字段`access`内容必须和`path`一致(不区分大小写)，才能起到菜单权限判断效果
 - 通过`useAccess`可以获取权限数据以及判断函数，文件位置`src\access.ts`
 - 如果需要对不在菜单中的页面做权限判断，可以把`access`设置为依附页面的路径
-- 按钮权限判断，按页面维度来处理
+- 功能权限判断，按页面维度来处理
 
     ```tsx
         const {operaCodeCheck} = useAccess();
         operaCodeCheck('O2');
+    ```
+
+- 权限组件，权限Hoc
+
+    ```tsx
+        import {Button as OldButton} from 'antd';
+
+        import {AccessDropdown, AccessButton, TAccessDropdownConfig} from '@/components/AccessModules';
+        // 高阶组件 accessPackage 扩展组件, 权限码 code 功能
+        import {accessPackage} from '@/components/HOC';
+
+        const Button = accessPackage(OldButton);
     ```
 
 ## 内置样式

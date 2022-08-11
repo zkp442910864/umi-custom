@@ -79,11 +79,15 @@ export const layout: RunTimeLayoutConfig = (initData) => {
         logout: () => {
             console.log('退出逻辑', 1);
         },
+        // 底部
         footerRender: () => <Footer />,
+        // 顶部右边栏
         rightContentRender: () => <RightContent />,
+        // 传入菜单数据
         menuDataRender: () => {
             return initialState?.menuData || [];
         },
+        // 每打开一个路由触发
         onPageChange: (location) => {
             // console.log(initialState);
             console.log('进入');

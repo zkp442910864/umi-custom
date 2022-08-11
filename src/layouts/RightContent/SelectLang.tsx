@@ -1,47 +1,47 @@
 
 import {getLocale, setLocale} from 'umi';
 // import {LogoutOutlined, SettingOutlined, UserOutlined} from '@ant-design/icons';
-import {Menu, Dropdown, MenuProps} from 'antd';
-import {ItemType} from 'antd/lib/menu/hooks/useItems';
+import {MenuProps} from 'antd';
 import classnames from 'classnames';
 import {useRef} from 'react';
+
+import {AccessDropdown, IAccessDropdownProps} from '@/components/AccessModules';
 
 import styles from './index.less';
 
 const SelectLang = () => {
-    // const {initialState, setInitialState} = useModel('@@initialState');
     const {current: selectLang} = useRef(getLocale());
 
-    const menuItems: ItemType[] = [
-        // {
-        //     key: 'logout',
-        //     icon: <LogoutOutlined />,
-        //     label: '退出登录',
-        // },
+    const menuItems: IAccessDropdownProps['config'] = [
         {
             key: 'zh-CN',
-            // lang: 'zh-CN',
             label: '简体中文',
             icon: <span>🇨🇳</span>,
             title: '语言',
         },
+        // {
+        //     type: 'divider',
+        // },
         {
             key: 'en-US',
-            // lang: 'en-US',
             label: 'English',
             icon: <span>🇺🇸</span>,
             title: 'Language',
         },
     ];
 
-    const onMenuClick: MenuProps['onClick'] = (e) => {
+    const onMenuClick: IAccessDropdownProps['onSelect'] = (e) => {
         setLocale(e.key, true);
     };
 
-    const menuHeaderDropdown = (<Menu items={menuItems} selectedKeys={[selectLang]} onClick={onMenuClick} />);
-
     return (
-        <Dropdown overlay={menuHeaderDropdown}>
+        <AccessDropdown
+            config={menuItems}
+            menuProps={{
+                selectedKeys: [selectLang],
+            }}
+            onSelect={onMenuClick}
+        >
             <div className={styles['dropdown-item']}>
                 <i className={classnames(styles['dropdown-item-lang-icon'])}>
                     <svg
@@ -61,7 +61,7 @@ const SelectLang = () => {
                 </i>
                 <div />
             </div>
-        </Dropdown>
+        </AccessDropdown>
     );
 };
 

@@ -1,7 +1,8 @@
 import {useModel, useAppData} from 'umi';
 import {LogoutOutlined} from '@ant-design/icons';
-import {Avatar, Menu, Dropdown, MenuProps} from 'antd';
-import {ItemType} from 'antd/lib/menu/hooks/useItems';
+import {Avatar, MenuProps} from 'antd';
+
+import {AccessDropdown, IAccessDropdownProps} from '@/components/AccessModules';
 
 import styles from './index.less';
 
@@ -14,7 +15,7 @@ const AvatarDropdown = () => {
 
     const userData = initialState?.userData || {} as TObj;
 
-    const menuItems: ItemType[] = [
+    const menuItems: IAccessDropdownProps['config'] = [
         {
             key: 'logout',
             icon: <LogoutOutlined />,
@@ -28,15 +29,16 @@ const AvatarDropdown = () => {
         }
     };
 
-    const menuHeaderDropdown = (<Menu items={menuItems} selectedKeys={[]} onClick={onMenuClick} />);
-
     return (
-        <Dropdown overlay={menuHeaderDropdown}>
+        <AccessDropdown
+            config={menuItems}
+            onSelect={onMenuClick}
+        >
             <div className={styles['dropdown-item']}>
                 <Avatar alt="avatar" size="small" src={userData.avatar || './favicon.png'} />
                 <div className={styles['dropdown-item-name']}>{userData.UserName}</div>
             </div>
-        </Dropdown>
+        </AccessDropdown>
     );
 };
 
