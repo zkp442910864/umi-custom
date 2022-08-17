@@ -8,6 +8,7 @@
     "postinstall": "umi setup",
     "setup": "umi setup",
     "start": "npm run dev",
+    "gene": "node swagger.generate.ts",
     "eslint": "umi lint --eslint-only --quiet",
     "eslint:fix": "umi lint --eslint-only --fix",
     "stylelint": "umi lint --stylelint-only --quiet"
@@ -31,6 +32,7 @@
     "@zzzz-/stylelint-config-test": "^1.0.9",
     "eslint": "^8.21.0",
     "stylelint": "^14.9.1",
+    "swagger-typescript-api": "^10.0.1",
     "typescript": "^4.1.2",
     "unocss": "^0.45.1",
     "webpack-chain": "^6.5.1"
