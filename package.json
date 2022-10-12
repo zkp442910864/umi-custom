@@ -15,26 +15,26 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
-    "antd": "^4.22.3",
-    "classnames": "^2.3.1",
+    "antd": "^4.23.5",
+    "classnames": "^2.3.2",
     "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "umi": "^4.0.11"
+    "umi": "^4.0.24"
   },
   "devDependencies": {
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
-    "@umijs/lint": "^4.0.11",
-    "@umijs/plugins": "^4.0.11",
-    "@unocss/cli": "^0.45.1",
+    "@types/react": "^18.0.21",
+    "@types/react-dom": "^18.0.6",
+    "@umijs/lint": "^4.0.24",
+    "@umijs/plugins": "^4.0.24",
+    "@unocss/cli": "^0.45.29",
     "@zzzz-/eslint-config-test": "^1.0.20",
     "@zzzz-/stylelint-config-test": "^1.0.9",
     "eslint": "^8.21.0",
     "stylelint": "^14.9.1",
     "swagger-typescript-api": "^10.0.1",
-    "typescript": "^4.1.2",
-    "unocss": "^0.45.1",
+    "typescript": "^4.8.4",
+    "unocss": "^0.45.29",
     "webpack-chain": "^6.5.1"
   }
 }

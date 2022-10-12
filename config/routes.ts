@@ -12,7 +12,7 @@
 const arr: IRouter[] = [
     {
         path: '/',
-        component: '/Home',
+        component: './Home',
         name: '首页',
         locale: 'menu.dashboard',
         access: '/',
@@ -22,7 +22,7 @@ const arr: IRouter[] = [
         routes: [
             {
                 path: '/parent0/child1',
-                component: '/testPage/Test1',
+                component: './testPage/Test1',
                 access: '/parent0',
             },
         ],
@@ -32,14 +32,14 @@ const arr: IRouter[] = [
         routes: [
             {
                 path: '/parent1/child1',
-                component: '/testPage/Test1',
+                component: './testPage/Test1',
             },
             {
                 path: '/parent1/child2',
                 routes: [
                     {
                         path: '/parent1/child2/sub1',
-                        component: '/testPage/Test1',
+                        component: './testPage/Test1',
                         access: '/parent1/child2/sub1',
                     },
                 ],
@@ -48,12 +48,12 @@ const arr: IRouter[] = [
     },
     {
         path: '/parent2',
-        component: '/testPage/Test1',
+        component: './testPage/Test1',
         access: ['/parent2', '/'],
     },
     {
         path: '*',
-        component: '/StatusPage',
+        component: './StatusPage',
     },
 ];
 
