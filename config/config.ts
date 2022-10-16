@@ -75,9 +75,9 @@ export default defineConfig({
     // 设置按需引入的 polyfill。默认全量引入。
     // polyfill: {},
     // 配置需要兼容的浏览器最低版本。Umi 会根据这个自定引入 polyfill、配置 autoprefixer 和做语法转换等。
-    targets: {
-        ie: 11,
-    },
+    // targets: {
+    //     ie: 11,
+    // },
 
     // 输出目录
     outputPath: 'dist',

@@ -1,5 +1,6 @@
 import {useAccess, useModel} from 'umi';
 import {Button} from 'antd';
+import {AsyncSelect} from '@zzzz-/react-antd-extends';
 
 import yayJpg from '@/assets/yay.jpg';
 
@@ -15,6 +16,7 @@ export default function Home () {
             <p className="m-100 p-14">
                 <img src={yayJpg} width="388" />
             </p>
+            <AsyncSelect />
             <p className="!p-x-10 font-28 color-red">
                 To get started, edit <code>pages/index.tsx</code> and save to reload.
             </p>

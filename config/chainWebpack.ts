@@ -9,6 +9,9 @@ const fn = (memo: Config, args: any) => {
 
     // memo.resolve.alias.set('foo', '/tmp/to/foo');
 
+    // 查看分析内部依赖情况
+    // memo.optimization.providedExports(false);
+
 };
 
 export default fn;
