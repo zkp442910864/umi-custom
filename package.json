@@ -11,32 +11,33 @@
     "gene": "node swagger.generate.ts",
     "eslint": "umi lint --eslint-only --quiet",
     "eslint:fix": "umi lint --eslint-only --fix",
+    "ts-check": "tsc -p tsconfig.check.json",
     "stylelint": "umi lint --stylelint-only --quiet"
   },
   "dependencies": {
-    "@ant-design/icons": "^4.7.0",
-    "@ant-design/pro-layout": "^7.1.8",
+    "@ant-design/icons": "^4.8.0",
+    "@ant-design/pro-layout": "^7.3.9",
     "@zzzz-/react-antd-extends": "^0.0.91",
-    "antd": "^4.23.5",
+    "antd": "^4.24.5",
     "classnames": "^2.3.2",
     "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "umi": "^4.0.24"
+    "umi": "^4.0.36"
   },
   "devDependencies": {
-    "@types/react": "^18.0.21",
-    "@types/react-dom": "^18.0.6",
-    "@umijs/lint": "^4.0.24",
-    "@umijs/plugins": "^4.0.24",
-    "@unocss/cli": "^0.45.29",
+    "@types/react": "^18.0.26",
+    "@types/react-dom": "^18.0.9",
+    "@umijs/lint": "^4.0.36",
+    "@umijs/plugins": "^4.0.36",
+    "@unocss/cli": "^0.47.5",
     "@zzzz-/eslint-config-test": "^1.0.20",
     "@zzzz-/stylelint-config-test": "^1.0.9",
-    "eslint": "^8.21.0",
-    "stylelint": "^14.9.1",
-    "swagger-typescript-api": "^10.0.1",
+    "eslint": "^8.29.0",
+    "stylelint": "^14.16.0",
+    "swagger-typescript-api": "^12.0.2",
     "typescript": "^4.8.4",
-    "unocss": "^0.45.29",
+    "unocss": "^0.47.5",
     "webpack-chain": "^6.5.1"
   }
 }
