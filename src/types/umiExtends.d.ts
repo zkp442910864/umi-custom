@@ -7,5 +7,6 @@ import type rawAccess from '@/access';
  * https://segmentfault.com/a/1190000022842783
  */
 declare module 'umi' {
-    function useAccess(): ReturnType<typeof rawAccess>;
+    function useAccess (): ReturnType<typeof rawAccess>;
 }
+

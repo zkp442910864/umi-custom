@@ -1,10 +1,10 @@
 import {defineConfig} from 'umi';
 
 const proxy: ReturnType<typeof defineConfig>['proxy'] = {
-    '/api/': {
-        target: 'http://xxx.xxx.com/',
+    '/api-guangxian/': {
+        target: 'http://10.10.159.11:7001/',
         changeOrigin: true,
-        pathRewrite: {'^/api': ''},
+        pathRewrite: {'^/api-guangxian': ''},
     },
 };
 

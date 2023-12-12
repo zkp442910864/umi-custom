@@ -4,10 +4,11 @@ import path from 'path';
 import routes from './routes';
 import chainWebpack from './chainWebpack';
 import proxy from './proxy';
+import {devConfig, testConfig, proConfig} from './env';
 
 export default defineConfig({
     // html title
-    title: 'x-system',
+    title: 'system',
     favicons: ['./favicon.png'],
     // 配置额外的 meta 标签。
     metas: [],
@@ -16,7 +17,6 @@ export default defineConfig({
 
     // 插件
     plugins: [
-        '@umijs/plugins/dist/dva',
         '@umijs/plugins/dist/initial-state',
         '@umijs/plugins/dist/access',
         '@umijs/plugins/dist/locale',
@@ -24,12 +24,18 @@ export default defineConfig({
         '@umijs/plugins/dist/layout',
         '@umijs/plugins/dist/antd',
         '@umijs/plugins/dist/unocss',
+        '@umijs/plugins/dist/qiankun',
         // path.resolve(process.cwd(), './node_modules/@umijs/plugin-dva/src/index')
-        // path.resolve(process.cwd(), './config/plugins/plugin-html')
+        // path.resolve(process.cwd(), './config/plugins/plugin-unocss'),
     ],
+    qiankun: {
+        // 子应用标识
+        slave: {},
+        // 主应用标识
+        master: {},
+    },
     // 插件配置
     initialState: {},
-    dva: {},
     access: {},
     model: {},
     layout: {},
@@ -41,13 +47,19 @@ export default defineConfig({
     },
     antd: {
         style: 'less',
-        import: true,
+        import: false,
         configProvider: {},
     },
     unocss: {
         // 添加其他包含 unocss 的 classname 的文件目录
+        // TODO: linux 下，深层目录会检测不到文件里的class内容
         watch: [
             'src/**/*.tsx',
+            'src/**/**/*.tsx',
+            'src/**/**/**/*.tsx',
+            'src/**/**/**/**/*.tsx',
+            'src/**/**/**/**/**/*.tsx',
+            'src/**/**/**/**/**/**/*.tsx',
             // 'src/**/*.jsx',
             // 'components/**/*.tsx',
             // 'components/**/*.jsx',
@@ -55,10 +67,15 @@ export default defineConfig({
     },
     // 全局属性，只支持字符串
     define: {
-        ENV: '...',
+        // ENV: '...',
+        // process.env.BUILD_TYPE === 'test'
+        ...typeof process.env.BUILD_TYPE === 'undefined' ? devConfig : {},
+        ...process.env.BUILD_TYPE === 'test' ? testConfig : {},
+        ...process.env.BUILD_TYPE === 'pro' ? proConfig : {},
+        'process.env.BUILD_TYPE': process.env.BUILD_TYPE,
     },
     // 配置 webpack 的 publicPath。
-    // publicPath: './',
+    publicPath: process.env.NODE_ENV === 'development' ? '/' : './',
     // 非根目录的情况下，会使用到
     base: '/',
     // 配置 less 变量主题。
@@ -73,10 +90,16 @@ export default defineConfig({
     },
     routes,
     // 设置按需引入的 polyfill。默认全量引入。
-    // polyfill: {},
+    // polyfill: {
+    //     imports: [],
+    // },
     // 配置需要兼容的浏览器最低版本。Umi 会根据这个自定引入 polyfill、配置 autoprefixer 和做语法转换等。
     targets: {
-        ie: 11,
+        // ie: 11,
+        chrome: 58,
+        firefox: 58,
+        edge: 58,
+        safari: 58,
     },
 
     // 输出目录
@@ -86,7 +109,7 @@ export default defineConfig({
     // extraBabelIncludes: [],
 
     // 配置额外的 babel 插件。可传入插件地址或插件函数。
-    extraBabelPlugins: [],
+    extraBabelPlugins: [] as any[],
 
     // 配置额外的 babel 插件集。可传入插件集地址或插件集函数。
     extraBabelPresets: [],
@@ -124,5 +147,7 @@ export default defineConfig({
     proxy,
     // 这个开启后会影响加密软件？
     // clientLoader: {},
+
+    // 提供别人访问时候，要设置为false
     // mfsu: false,
 });

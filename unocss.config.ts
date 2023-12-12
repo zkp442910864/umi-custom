@@ -1,11 +1,14 @@
 
-import {defineConfig, presetAttributify, presetUno} from 'unocss';
+import {defineConfig, presetUno} from 'unocss';
+import presetIcons from '@unocss/preset-icons';
 
 export default defineConfig({
     // envMode: dev ? 'dev' : 'build',
     presets: [
         // presetAttributify({strict}),
         // presetUno(),
+        presetUno({prefix: 'un-'}),
+        presetIcons({}),
     ],
     variants: [
         // 支持所有规则的 `hover:`
@@ -38,7 +41,7 @@ export default defineConfig({
         // m-l-1 m-r-5 m-t-5 m-b-5 m-y-10 m-x-10 m-tb-10 m-lr-10 m-10
         // p-l-1 p-r-5 p-t-5 p-b-5 p-y-10 p-x-10 p-tb-10 p-lr-10 p-10
         [
-            /([m|p])-([a-z|A-Z]+|\d+)-?(\d+)?/,
+            /^([m|p])-([a-z|A-Z]+|\d+)-?(-?\d+)?/,
             ([, v1, v2, v3]) => {
                 const prefix = v1 === 'm' ? 'margin' : 'padding';
 
@@ -116,12 +119,20 @@ export default defineConfig({
 
         /** 灰色 */
         ['color-gray', {color: '#999'}],
+        ['border-gray', {border: '1px solid #999'}],
         /** 错误色 */
         ['color-error', {color: '#f5222d'}],
+        ['border-error', {border: '1px solid #f5222d'}],
         /** 红色 */
         ['color-red', {color: '#f5222d'}],
+        ['border-red', {border: '1px solid #f5222d'}],
         /** 主色调 */
         ['color-main', {color: '#1890ff'}],
+        ['border-main', {border: '1px solid #1890ff'}],
+        ['color-await', {color: '#F59A23'}],
+        ['color-success', {color: '#02790E'}],
+        /** 背景色 */
+        ['bg-f', {'background-color': '#fff'}],
 
         // 禁止选择
         ['disabled-select', {'user-select': 'none'}],
@@ -137,6 +148,10 @@ export default defineConfig({
         ['static', {position: 'static'}],
         // 隐藏
         ['hidden', {display: 'none'}],
+
+        ['inline-block', {display: 'inline-block'}],
+        ['block', {display: 'block'}],
+        ['inline', {display: 'inline'}],
 
         // flex 盒子
         ['flex', {display: 'flex'}],
@@ -166,6 +181,17 @@ export default defineConfig({
         ['f-content-around', {'align-content': 'space-around'}],
         ['f-content-between', {'align-content': 'space-between'}],
         ['f-content-evenly', {'align-content': 'space-evenly'}],
+
+        /** 左浮动 */
+        ['float-left', {float: 'left'}],
+        /** 右浮动 */
+        ['float-right', {float: 'right'}],
+
+        // 排版
+        ['align-middle', {'vertical-align': 'middle'}],
+        ['align-bottom', {'vertical-align': 'bottom'}],
+        ['align-top', {'vertical-align': 'top'}],
+
 
         // flex 盒子
         // [

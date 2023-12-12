@@ -70,9 +70,27 @@ export default function access (initialState: InitialStateType) {
         allMenuDataMap = {},
     } = initialState || {};
 
+    const operaCodeCheck = operationCode(allMenuDataMap);
+
     return {
-        /** 按钮权限判断 */
-        operaCodeCheck: operationCode(allMenuDataMap),
+        /** 权限判断 */
+        operaCodeCheck,
+        /** 列表 按权限过滤 */
+        listOperaCodeCheck: <T extends TObj[] = TObj[]>(list: Array<TPermissionCode & T[number]>) => {
+            const newList: typeof list = [];
+
+            list.forEach((item) => {
+
+                if (item.codeData) {
+                    const access = operaCodeCheck(item.codeData.value || '');
+                    if (access) newList.push(item);
+                } else {
+                    newList.push(item);
+                }
+            });
+
+            return newList as T;
+        },
         /** 页面权限 */
         ...getAllowPage(getRawRouterAccess(rawRouters), allMenuDataMap),
     };

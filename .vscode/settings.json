@@ -5,11 +5,8 @@
     "stylelint.enable": true,
     // eslint
     "editor.codeActionsOnSave": {
-        // 保存格式化
-        // "source.fixAll": true,
-        // 此配置仅在ESLint上将其打开 保存格式化
-        "source.fixAll.eslint": true,
-        "source.fixAll.stylelint": true,
+        "source.fixAll.eslint": "explicit",
+        "source.fixAll.stylelint": "explicit"
     },
     // 修改默认的格式化配置
     "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
