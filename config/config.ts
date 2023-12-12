@@ -46,9 +46,9 @@ export default defineConfig({
         baseSeparator: '-',
     },
     antd: {
-        style: 'less',
-        import: false,
-        configProvider: {},
+        // style: 'less',
+        // import: false,
+        // configProvider: {},
     },
     unocss: {
         // 添加其他包含 unocss 的 classname 的文件目录
@@ -115,24 +115,9 @@ export default defineConfig({
     extraBabelPresets: [],
 
     // 排除不打包的内容
-    externals: {
-        react: 'React',
-        // reactDom: 'ReactDOM',
-        'react-dom/client': 'ReactDOM',
-        '@ant-design/icons': 'icons',
-        antd: 'antd',
-    },
+    externals: {},
     // 配置 <head> 中的额外 script。
-    headScripts: [
-        // 'https://unpkg.com/react@18.2.0/umd/react.development.js',
-        // 'https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js',
-
-        'https://unpkg.com/react@18.2.0/umd/react.production.min.js',
-        'https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js',
-
-        'https://unpkg.com/@ant-design/icons@4.7.0/dist/index.umd.min.js',
-        'https://unpkg.com/antd@4.23.5/dist/antd.min.js',
-    ],
+    headScripts: [],
 
     // 包管理
     npmClient: 'pnpm',

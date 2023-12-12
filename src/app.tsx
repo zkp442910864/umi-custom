@@ -16,7 +16,7 @@ export async function getInitialState () {
     try {
 
         // TODO: 前置请求，注意报错处理
-        const [ajaxMenuData, ajaxUserData, ajaxDictionData] = await Promise.all<TObj[]>([
+        const [ajaxMenuData, ajaxUserData] = await Promise.all<TObj[]>([
             Promise.resolve({fake: true, data: routes.filter(ii => !['*', '/'].includes(ii.path!))}),
             Promise.resolve({data: {}}),
             Promise.resolve({data: {}}),
@@ -108,7 +108,7 @@ export const layout: RunTimeLayoutConfig = (initData) => {
             return initialState?.menuData || [];
         },
         // 每打开一个路由触发
-        onPageChange: (location) => {},
+        onPageChange: () => {},
         /*
         avatarProps: {
             title: 'eeee'
@@ -149,23 +149,5 @@ export const layout: RunTimeLayoutConfig = (initData) => {
     };
 };
 
-<<<<<<< HEAD
 
 export {qiankun};
-=======
-/** 乾坤子应用配置 */
-export const qiankun = {
-    // 应用加载之前
-    async bootstrap(props: any) {
-        console.log('app1 bootstrap', props);
-    },
-    // 应用 render 之前触发
-    async mount(props: any) {
-        console.log('app1 mount', props);
-    },
-    // 应用卸载之后触发
-    async unmount(props: any) {
-        console.log('app1 unmount', props);
-    },
-};
->>>>>>> daefe40e4b096ecc2ba5accd1993a358dc28a85a
