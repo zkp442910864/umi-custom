@@ -115,7 +115,24 @@ export default defineConfig({
     extraBabelPresets: [],
 
     // 排除不打包的内容
-    // externals: {},
+    externals: {
+        react: 'React',
+        // reactDom: 'ReactDOM',
+        'react-dom/client': 'ReactDOM',
+        '@ant-design/icons': 'icons',
+        antd: 'antd',
+    },
+    // 配置 <head> 中的额外 script。
+    headScripts: [
+        // 'https://unpkg.com/react@18.2.0/umd/react.development.js',
+        // 'https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js',
+
+        'https://unpkg.com/react@18.2.0/umd/react.production.min.js',
+        'https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js',
+
+        'https://unpkg.com/@ant-design/icons@4.7.0/dist/index.umd.min.js',
+        'https://unpkg.com/antd@4.23.5/dist/antd.min.js',
+    ],
 
     // 包管理
     npmClient: 'pnpm',
@@ -124,8 +141,6 @@ export default defineConfig({
 
     // 忽略 moment 的 locale 文件，用于减少产物尺寸。
     ignoreMomentLocale: true,
-    // 配置 <head> 中的额外 script。
-    headScripts: [],
     // 配置额外的 link 标签。
     links: [],
     // 配置 <body> 中额外的 script 标签。

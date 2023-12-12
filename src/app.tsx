@@ -149,5 +149,23 @@ export const layout: RunTimeLayoutConfig = (initData) => {
     };
 };
 
+<<<<<<< HEAD
 
 export {qiankun};
+=======
+/** 乾坤子应用配置 */
+export const qiankun = {
+    // 应用加载之前
+    async bootstrap(props: any) {
+        console.log('app1 bootstrap', props);
+    },
+    // 应用 render 之前触发
+    async mount(props: any) {
+        console.log('app1 mount', props);
+    },
+    // 应用卸载之后触发
+    async unmount(props: any) {
+        console.log('app1 unmount', props);
+    },
+};
+>>>>>>> daefe40e4b096ecc2ba5accd1993a358dc28a85a
