@@ -15,12 +15,12 @@ function getRawRouterAccess (rawData: typeof rawRouters) {
     // 获取权限值，做键值函数判断
     const handler = (data: typeof rawRouters) => {
         data.forEach((item) => {
-            if (item.path && typeof item.access === 'string') {
+            if (item.path && typeof item.customAccess === 'string') {
                 // 可能存在多个权限值
-                const access = item.access as string;
+                const access = item.customAccess as string;
 
                 // 判断是否包含关系
-                judgeMap[item.access] = (allMenuDataMap) => {
+                judgeMap[item.customAccess] = (allMenuDataMap) => {
                     const strArr = access.split(',');
                     return strArr.some((path) => !!allMenuDataMap[path]);
                 };
@@ -72,7 +72,7 @@ export default function access (initialState: InitialStateType) {
 
     const operaCodeCheck = operationCode(allMenuDataMap);
 
-    return {
+    const accessObj = {
         /** 权限判断 */
         operaCodeCheck,
         /** 列表 按权限过滤 */
@@ -94,5 +94,7 @@ export default function access (initialState: InitialStateType) {
         /** 页面权限 */
         ...getAllowPage(getRawRouterAccess(rawRouters), allMenuDataMap),
     };
+
+    return accessObj as typeof accessObj & Record<string, boolean>;
 }
 

@@ -1,10 +1,13 @@
-import {RunTimeLayoutConfig, createSearchParams, history, useAccess, useModel} from 'umi';
+/* eslint-disable react-hooks/rules-of-hooks */
+import {Access, RunTimeLayoutConfig, createSearchParams, history, useAccess, useModel, useRouteData, useRoutes} from 'umi';
 
 import StatusPage from '@/layouts/StatusPage';
 import globalData from '@/utils/base/globalData';
 import {QIANKUN, qiankun} from '@/utils/base/initQiankun';
 
 import routes from '../config/routes';
+import React, {Suspense, lazy, useRef} from "react";
+import {KeepAliveConsumer, KeepAliveProvider} from "./components/KeeyAlive";
 
 /** https://umijs.org/zh-CN/plugins/plugin-initial-state */
 export async function getInitialState () {
@@ -17,7 +20,7 @@ export async function getInitialState () {
 
         // TODO: 前置请求，注意报错处理
         const [ajaxMenuData, ajaxUserData] = await Promise.all<TObj[]>([
-            Promise.resolve({fake: true, data: routes.filter(ii => !['*', '/'].includes(ii.path!))}),
+            Promise.resolve({fake: true, data: routes.filter(ii => !['*'].includes(ii.path!) && !ii.redirect)}),
             Promise.resolve({data: {}}),
             Promise.resolve({data: {}}),
         ]);
@@ -71,9 +74,7 @@ export const layout: RunTimeLayoutConfig = (initData) => {
         // globalData.offsetHeader = hideTop || hideAll ? 0 : 56;
     }
 
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    globalData.accessObj = useAccess();
-    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const accessObj = globalData.accessObj = useAccess();
     globalData.initialStateObj = useModel('@@initialState').initialState!;
 
     return {
@@ -82,8 +83,8 @@ export const layout: RunTimeLayoutConfig = (initData) => {
         menu: {
             locale: false,
         },
-        notFound: <StatusPage code={404} />,
-        noAccessible: <StatusPage code={403} />,
+        // notFound: <StatusPage code={404} />,
+        // noAccessible: <StatusPage code={403} />,
         className: QIANKUN ? undefined : 'p-20 p-b-0',
         token: {
             header: {
@@ -109,6 +110,33 @@ export const layout: RunTimeLayoutConfig = (initData) => {
         },
         // 每打开一个路由触发
         onPageChange: () => {},
+        childrenRender: (children) => {
+            const ref = useRef<HTMLDivElement>(null);
+            // const ele = useRoutes(routes, history.location);
+            console.log(accessObj)
+
+            return (
+                <>
+                    <KeepAliveProvider>
+                        {
+                            routes.filter(ii => ii.element).map((item) => (
+                                <KeepAliveConsumer key={item.path} renderContext={ref} currentPath={history.location.pathname} pathKey={item.path!}>
+                                    <Access
+                                        accessible={accessObj[item.path!.toLocaleLowerCase()] ?? true}
+                                        fallback={<StatusPage code={403} />}
+                                    >
+                                        {useRoutes(routes, item.path)}
+                                    </Access>
+                                </KeepAliveConsumer>
+                            ))
+                        }
+                        {routes.every(ii => ii.path !== history.location.pathname) ? children : ''}
+                        {/* {children} */}
+                        <div className="keep-alive" ref={ref}></div>
+                    </KeepAliveProvider>
+                </>
+            );
+        },
         /*
         avatarProps: {
             title: 'eeee'
@@ -149,5 +177,8 @@ export const layout: RunTimeLayoutConfig = (initData) => {
     };
 };
 
+// export function rootContainer (container: any) {
+//     return React.createElement(KeepAliveProvider, null, container);
+// }
 
 export {qiankun};
