@@ -11,11 +11,15 @@ const StatusPage: FC<IProps> = (props) => {
     const statusMap = {
         404: {
             code: '404',
-            text: '抱歉，您访问的页面不存在。',
+            text: '-抱歉，您访问的页面不存在-',
         },
         403: {
             code: '403',
-            text: '抱歉，您没有权限访问页面。',
+            text: '-抱歉，您没有权限访问页面-',
+        },
+        500: {
+            code: '500',
+            text: '-未知路由-',
         },
     };
 

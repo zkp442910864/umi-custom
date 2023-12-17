@@ -4,7 +4,7 @@ import {Layout} from 'antd';
 const Footer: FC = () => {
 
     return (
-        <Layout.Footer style={{textAlign: 'center', background: 'transparent'}}>Copyright 智汇创想</Layout.Footer>
+        <Layout.Footer style={{textAlign: 'center', background: 'transparent'}}>底部内容</Layout.Footer>
     );
 };
 

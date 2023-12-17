@@ -1,4 +1,4 @@
-import {IRouter, accessToLocaleLowerCase, packageCom} from "./config";
+import {ICustomRouter, handleData} from "./config";
 
 
 /**
@@ -11,42 +11,90 @@ import {IRouter, accessToLocaleLowerCase, packageCom} from "./config";
  * @param wrappers 配置路由组件的包装组件，通过包装组件可以为当前的路由组件组合进更多的功能。 比如，可以用于路由级别的权限校验
  * @doc https://umijs.org/docs/guides/routes
  */
-const arr: IRouter[] = [
-    {
-        path: '/Home',
-        redirect: '/',
-    },
+const arr: ICustomRouter[] = [
     {
         path: '/',
-        customAccess: '/',
-        name: '首页',
-        element: packageCom(() => import('@/pages/Home')),
+        name: '根',
+        layout: false,
+        component: '@/layouts/BasicLayout',
+        routes: [
+            {path: '/', redirect: '/Test2', },
+            {
+                path: 'Home',
+                component: './Home',
+                name: '首页',
+                customAccess: '/Home',
+                keepAlive: true,
+            },
+            {
+                path: 'Test1',
+                name: 'Test1',
+                component: './Test1',
+                keepAlive: true,
+            },
+            {
+                path: 'Test2',
+                name: 'Test2',
+                component: './Test2',
+                customAccess: '/Test2',
+                keepAlive: true,
+            },
+            {
+                path: '/childrenPage',
+                name: '子页面',
+                routes: [
+                    {path: '/childrenPage', redirect: '/childrenPage/cTest3', },
+                    {
+                        path: '/childrenPage/cTest3',
+                        name: 'cTest3',
+                        component: './Test3',
+                        keepAlive: true,
+                    }
+                ],
+            },
+            {
+                path: '*',
+                component: '../layouts/StatusPage',
+            },
+        ],
     },
     {
-        path: '/Test1',
-        name: 'Test1',
-        element: packageCom(() => import('@/pages/Test1')),
+        path: '*',
+        component: '../layouts/StatusPage',
     },
-    {
-        path: '/Test2',
-        name: 'Test2',
-        element: packageCom(() => import('@/pages/Test2')),
-    },
-    {
-        path: '/Test3',
-        name: 'Test3',
-        element: packageCom(() => import('@/pages/Test3')),
-    },
+    // {
+    //     path: 'Test2',
+    //     name: 'Test2',
+    //     component: './Test2',
+    //     // element: packageCom(() => import('@/pages/Test2')),
+    // },
+    // {
+    //     path: 'Test3',
+    //     name: 'Test3',
+    //     component: './Test3',
+    //     // element: packageCom(() => import('@/pages/Test3')),
+    // },
+    // {
+    //     path: 'childrenPage',
+    //     routes: [
+    //         {
+    //             path: 'cTest3',
+    //             name: 'cTest3',
+    //             keepAlive: true,
+    //             component: './Test3'
+    //         }
+    //     ],
+    // },
     // {
     //     path: '/Test4',
     //     name: 'Test4',
     //     element: packageCom(() => import('@/layouts/StatusPage')),
     // },
-    {
-        path: '*',
-        // element: packageCom(() => import('@/layouts/StatusPage')),
-        component: '../layouts/StatusPage',
-    },
+    // {
+    //     path: '*',
+    //     // element: packageCom(() => import('@/layouts/StatusPage')),
+    //     component: '../layouts/StatusPage',
+    // },
 ];
 
 /**
@@ -54,5 +102,9 @@ const arr: IRouter[] = [
  * 重定向路由
  * 404 403 处理
  */
+export default handleData(arr);
+export const menuList = handleData(JSON.parse(JSON.stringify(arr)), true);
 
-export default accessToLocaleLowerCase(arr);
+export type {
+    ICustomRouter,
+}

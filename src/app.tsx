@@ -1,13 +1,8 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import {Access, RunTimeLayoutConfig, createSearchParams, history, useAccess, useModel, useRouteData, useRoutes} from 'umi';
 
-import StatusPage from '@/layouts/StatusPage';
-import globalData from '@/utils/base/globalData';
-import {QIANKUN, qiankun} from '@/utils/base/initQiankun';
+import {qiankun} from '@/utils/base/initQiankun';
 
-import routes from '../config/routes';
-import React, {Suspense, lazy, useRef} from "react";
-import {KeepAliveConsumer, KeepAliveProvider} from "./components/KeeyAlive";
+import {menuList} from '../config/routes';
 
 /** https://umijs.org/zh-CN/plugins/plugin-initial-state */
 export async function getInitialState () {
@@ -20,7 +15,7 @@ export async function getInitialState () {
 
         // TODO: 前置请求，注意报错处理
         const [ajaxMenuData, ajaxUserData] = await Promise.all<TObj[]>([
-            Promise.resolve({fake: true, data: routes.filter(ii => !['*'].includes(ii.path!) && !ii.redirect)}),
+            Promise.resolve({fake: true, data: menuList.concat([{path: '/qwe', name: 'ew'}])}),
             Promise.resolve({data: {}}),
             Promise.resolve({data: {}}),
         ]);
@@ -57,125 +52,6 @@ export async function getInitialState () {
 
     return data;
 }
-
-// ProLayout 支持的api https://procomponents.ant.design/components/layout
-export const layout: RunTimeLayoutConfig = (initData) => {
-
-    const {initialState} = initData || {};
-    const queryData = createSearchParams(history.location.search);
-    const hideLeft = queryData.get('hideLeft') === '1';
-    let hideAll = queryData.get('hideAll') === '1';
-    const hideTop = queryData.get('hideTop') === '1';
-
-    if (QIANKUN || window.parent !== window) {
-        // globalData.offsetHeader = 56;
-        hideAll = true;
-    } else {
-        // globalData.offsetHeader = hideTop || hideAll ? 0 : 56;
-    }
-
-    const accessObj = globalData.accessObj = useAccess();
-    globalData.initialStateObj = useModel('@@initialState').initialState!;
-
-    return {
-        title: 'system',
-        logo: './favicon.png',
-        menu: {
-            locale: false,
-        },
-        // notFound: <StatusPage code={404} />,
-        // noAccessible: <StatusPage code={403} />,
-        className: QIANKUN ? undefined : 'p-20 p-b-0',
-        token: {
-            header: {
-                colorBgHeader: '#fcfcfc',
-            },
-            bgLayout: '#fff',
-            pageContainer: {
-                paddingBlockPageContainerContent: 0,
-                paddingInlinePageContainerContent: 0,
-            },
-        },
-        logout: () => {
-            // console.log('退出逻辑', 1);
-            window.localStorage.removeItem('Authorization');
-        },
-        // 底部
-        // footerRender: () => <Footer />,
-        // 顶部右边栏
-        rightContentRender: () => <></>,
-        // 传入菜单数据
-        menuDataRender: () => {
-            return initialState?.menuData || [];
-        },
-        // 每打开一个路由触发
-        onPageChange: () => {},
-        childrenRender: (children) => {
-            const ref = useRef<HTMLDivElement>(null);
-            // const ele = useRoutes(routes, history.location);
-            console.log(accessObj)
-
-            return (
-                <>
-                    <KeepAliveProvider>
-                        {
-                            routes.filter(ii => ii.element).map((item) => (
-                                <KeepAliveConsumer key={item.path} renderContext={ref} currentPath={history.location.pathname} pathKey={item.path!}>
-                                    <Access
-                                        accessible={accessObj[item.path!.toLocaleLowerCase()] ?? true}
-                                        fallback={<StatusPage code={403} />}
-                                    >
-                                        {useRoutes(routes, item.path)}
-                                    </Access>
-                                </KeepAliveConsumer>
-                            ))
-                        }
-                        {routes.every(ii => ii.path !== history.location.pathname) ? children : ''}
-                        {/* {children} */}
-                        <div className="keep-alive" ref={ref}></div>
-                    </KeepAliveProvider>
-                </>
-            );
-        },
-        /*
-        avatarProps: {
-            title: 'eeee'
-        },
-        items: [
-            {
-                title: 'qweeee',
-                icon: <SmileOutlined/>,
-                danger: true,
-                key: '1',
-            }
-        ],
-        actionsRender: () => {
-            return [
-                <>123</>,
-                <>123456</>,
-            ];
-        }, */
-
-        // 顶部高度
-        headerHeight: 55,
-        // 右部菜单栏宽度
-        siderWidth: 255,
-        // 布局
-        layout: 'mix',
-        // 固定头部
-        fixedHeader: true,
-        // 固定右部
-        fixSiderbar: true,
-
-        // 显示，自定义 头部
-        // headerRender: false,
-        // 显示，自定义 菜单
-        // menuRender: false,
-        ...hideLeft ? {layout: 'top'} : {},
-        ...hideTop ? {layout: 'side'} : {},
-        ...hideAll ? {menuRender: false, headerRender: false, footerRender: false} : {},
-    };
-};
 
 // export function rootContainer (container: any) {
 //     return React.createElement(KeepAliveProvider, null, container);

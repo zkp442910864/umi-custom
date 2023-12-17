@@ -21,7 +21,7 @@ export default defineConfig({
         '@umijs/plugins/dist/access',
         '@umijs/plugins/dist/locale',
         '@umijs/plugins/dist/model',
-        '@umijs/plugins/dist/layout',
+        // '@umijs/plugins/dist/layout',
         '@umijs/plugins/dist/antd',
         '@umijs/plugins/dist/unocss',
         '@umijs/plugins/dist/qiankun',
@@ -38,7 +38,7 @@ export default defineConfig({
     initialState: {},
     access: {},
     model: {},
-    layout: {},
+    // layout: {},
     locale: {
         // 默认使用 src/locales/zh-CN.ts 作为多语言文件
         // default: 'en-US',
