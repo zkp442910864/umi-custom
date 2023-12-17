@@ -14,7 +14,7 @@ const TopMenuTag = () => {
         current: '',
     })
 
-    console.log(initialState);
+    // console.log(initialState);
     const linkPage = (url: string) => navigate(url);
 
     useEffect(() => {

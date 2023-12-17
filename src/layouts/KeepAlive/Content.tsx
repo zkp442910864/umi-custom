@@ -41,7 +41,7 @@ const Content: FC<IContentProps> = ({
             list.forEach(item => {
                 if (item.keepAlive) {
                     const newItem = {...item};
-                    const {path, element} = getPathAndElement(newItem);
+                    const {path} = getPathAndElement(newItem);
                     if (!newItem.path?.startsWith('/')) {
                         newItem.path = path?.replace(/\/+/g, '/');
                     }

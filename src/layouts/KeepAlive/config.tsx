@@ -1,4 +1,5 @@
 import React, {createContext} from "react";
+import {createPortal} from "react-dom";
 
 export const KeepAliveContext = createContext<IKeepAliveProvider>({
     pushCacheItem: (() => {}) as any,
@@ -28,7 +29,20 @@ interface IKeepAliveConsumer {
     currentPath: string;
 };
 
+interface ICacheItem {
+    /** 内容 */
+    children: React.ReactNode;
+    /** 渲染dom容器 */
+    dom: HTMLDivElement;
+    /** 路径key */
+    pathKey: string;
+    reactPortal: ReturnType<typeof createPortal>;
+    /** 最新激活的时间戳 */
+    dateNow: number;
+}
+
 export type {
     IKeepAliveConsumer,
-    IKeepAliveProvider
+    IKeepAliveProvider,
+    ICacheItem,
 }

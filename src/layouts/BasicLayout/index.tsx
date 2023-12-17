@@ -36,7 +36,7 @@ const BasicLayout = () => {
                         location,
                         title: 'system',
                         logo: './favicon.png',
-                        className: QIANKUN ? undefined : 'p-x-20 p-y-0 un-h-100vh',
+                        className: QIANKUN ? undefined : 'p-0 un-h-100vh',
                         menu: {
                             locale: false,
                         },
@@ -65,9 +65,9 @@ const BasicLayout = () => {
                         // ...hideTop ? {layout: 'side'} : {},
                         ...hideAll ? {menuRender: false, headerRender: false, footerRender: false} : {},
                         onMenuHeaderClick: (e) => {
-                            e.stopPropagation();
-                            e.preventDefault();
-                            navigate('/');
+                            // e.stopPropagation();
+                            // e.preventDefault();
+                            // navigate('/');
                         },
                         menuItemRender: (menuItemProps, defaultDom) => {
                             if (menuItemProps.isUrl || menuItemProps.children) {

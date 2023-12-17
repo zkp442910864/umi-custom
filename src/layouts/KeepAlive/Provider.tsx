@@ -1,10 +1,10 @@
 import React, {FC, useRef} from "react";
-import {IKeepAliveProvider, KeepAliveContext} from "./config";
+import {ICacheItem, IKeepAliveProvider, KeepAliveContext} from "./config";
 
 
 const Provider: FC<{children: React.ReactNode, renderContent: React.RefObject<HTMLDivElement>}> = ({children, renderContent}) => {
 
-    const cache = useRef<any>({});
+    const cache = useRef<Record<string, ICacheItem>>({});
 
     const {current: value} = useRef<IKeepAliveProvider>({
         pushCacheItem: (pathKey, children, dom, reactPortal) => {
